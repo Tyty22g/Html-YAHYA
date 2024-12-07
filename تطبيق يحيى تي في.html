@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            user-select: none;
+        }
+        header {
+            background: #1a1a1a;
+            padding: 10px 20px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* توسيط العنوان */
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+        h1 {
+            margin: 0;
+            font-size: 20px;
+            font-family: 'Cairo', sans-serif;
+            text-align: center;
+            color: #fff;
+        }
+        .contact-icons {
+            position: fixed;
+            bottom: 20px; /* المسافة من الأسفل */
+            right: 20px; /* المسافة من اليمين */
+            z-index: 20;
+            background: rgba(26, 26, 26, 0.8); /* خلفية خفيفة */
+            padding: 10px;
+            border-radius: 5px; /* زوايا مدورة */
+            display: flex;
+            gap: 15px; /* المسافة بين الأيقونات */
+        }
+        .contact-icon {
+            color: #fff;
+            font-size: 24px; /* حجم الأيقونة */
+            text-decoration: none;
+        }
+        #page {
+            padding: 0;
+            height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+        .section {
+            padding: 10px 0;
+            width: 100vw;
+            margin-top: 0px; /* مسافة بين السلايدر والأقسام */
+        }
+        .section-title {
+            font-size: 24px;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+        .carousel {
+            border-radius: 10px; /* زوايا منحرفة للسلايدر */
+            overflow: hidden; /* إخفاء الزوائد */
+            max-width: 600px; /* زيادة العرض */
+            margin: 20px auto; /* توسيط السلايدر */
+        }
+        .carousel-item img {
+            width: 100%; /* عرض السلايدر */
+            height: 250px; /* تقليل ارتفاع السلايدر */
+            object-fit: cover;
+        }
+        .carousel-indicators {
+            bottom: -30px; /* موقع النقاط */
+        }
+        .shapes {
+            display: flex;
+            overflow-x: auto; /* تفعيل السحب الأفقي */
+            gap: 10px;
+            padding: 10px 0;
+            margin: 0;
+            width: 100%;
+        }
+        .shape {
+            border: 2px solid #1580B9; /* إطار ملون لكل شكل */
+            border-radius: 10px; /* زوايا مدورة */
+            background: #2c2c2c;
+            flex: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            transition: background 0.5s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            width: 120px; /* عرض أصغر */
+            height: 120px; /* ارتفاع المربعات */
+        }
+        .shape:hover {
+            background: #3c3c3c;
+        }
+        .shape:active {
+            background: #4c4c4c;
+        }
+        .shape img {
+            width: 100%; /* تجعل الصورة تملأ المربع */
+            height: 100%; /* جعل الارتفاع 100% لملء المربع بالكامل */
+            object-fit: cover; /* الحفاظ على نسبة العرض إلى الارتفاع */
+            position: absolute; /* جعل الصورة تغطي المربع بالكامل */
+            top: 0; /* وضع الصورة في الأعلى */
+            left: 0; /* وضع الصورة في اليسار */
+        }
+        .shape .title {
+            position: relative; /* تراكب النص فوق الصورة */
+            z-index: 1; /* التأكد من أن النص يظهر فوق الصورة */
+            margin-top: 5px; /* إضافة مسافة بين الصورة والعنوان */
+            font-size: 14px; /* حجم خط العنوان */
+            padding: 2px 0; /* تقليل padding لتقليل ارتفاع الخلفية */
+            background-color: rgba(255, 255, 255, 0.1); /* خلفية نص خفيفة */
+            width: 100%; /* جعل الخلفية تمتد من اليمين واليسار */
+            text-align: center; /* توسيط النص */
+            border-radius: 5px; /* زوايا مدورة لخلفية النص */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<body dir="rtl">
+
+<header>
+    <h1> YAHYA TV PRO</h1>
+</header>
+
+<div id="page">
+    <!-- سلايدر يظهر الصور بنقرات -->
+    <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="4000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://www2.0zz0.com/2024/11/20/13/999968768.jpg" alt="صورة 1">
+            </div>
+            <div class="carousel-item">
+                <img src="https://www2.0zz0.com/2024/11/20/14/972203704.jpg" alt="صورة 2">
+            </div>
+            <div class="carousel-item">
+                <img src="https://www2.0zz0.com/2024/11/20/14/265586974.jpg" alt="صورة 3">
+            </div>
+        </div>
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExample" data-slide-to="1"></li>
+            <li data-target="#carouselExample" data-slide-to="2"></li>
+        </ol>
+    </div>
+
+
+    <div class="section">
+        <div class="section-title">باقة قنوات متنوعة</div>
+        <div class="shapes">
+            <div class="shape" onclick="location.href='go:iqnews';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/921610447.jpg" alt="كرة القدم">
+                <div class="title">العراقية الاخبارية</div>
+            </div>
+            <div class="shape" onclick="location.href='go:jz1';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/871236010.jpg" alt="كرة السلة">
+                <div class="title">الجزيرة الاخباري</div>
+            </div>
+            <div class="shape" onclick="location.href='go:jzm';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/871236010.jpg" alt="التنس">
+                <div class="title">الجزيرة مباشر</div>
+            </div>
+            <div class="shape" onclick="location.href='go:BBC';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/648595899.jpg" alt="كرة الطائرة">
+                <div class="title">BBC NEWS Arabic</div>
+            </div>
+<div class="shape" onclick="location.href='go:DW';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/491714710.jpg" alt="كرة الطائرة">
+                <div class="title">DW Arabic</div>
+            </div>
+            <div class="shape" onclick="location.href='go:fur';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/637689660.jpg" alt="رفع الأثقال">
+                <div class="title">الرابعة العراقية</div>
+            </div>
+        </div>
+    </div>
+
+<div class="section">
+         
+        <div class="section-title">بطولة كاس الخليج 26</div>
+         <div class="shapes">
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:26';">
+                <img src="https://www2.0zz0.com/2024/12/07/08/782116836.jpg" alt="الفنون">
+                <div class="title">البث الاول</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:26';">
+                <img src="https://www2.0zz0.com/2024/12/07/08/791106902.jpg" alt="الفنون">
+                <div class="title">البث الثاني</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:26';">
+                <img src="https://www2.0zz0.com/2024/12/07/08/916142614.jpg" alt="الفنون">
+                <div class="title">البث الثالث</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:26';">
+                <img src="https://www2.0zz0.com/2024/12/07/08/525292491.jpg" alt="الفنون">
+                <div class="title">البث الرابع</div>
+            </div>
+          </div>
+       </div>
+
+
+
+    <div class="section">
+         
+        <div class="section-title">باقة beIN sports</div>
+         <div class="shapes">
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:be4k';">
+                <img src="https://up6.cc/2024/11/173280168026591.png" alt="beIN 1">
+                <div class="title">beIN 4k</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:be1';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/183169171.jpg" alt="beIN 1">
+                <div class="title">beIN 1</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:be2';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/476721569.jpg" alt="الفنون">
+                <div class="title">beIN 2</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:be3';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/499952322.jpg" alt="الفنون">
+                <div class="title">beIN 3</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:be4';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/104745678.jpg" alt="الفنون">
+                <div class="title">beIN 4</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:be5';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/917159579.jpg" alt="الفنون">
+                <div class="title">beIN 5</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:be6';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/685663285.jpg" alt="الفنون">
+                <div class="title">beIN 6</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:be7';">
+                <img src="https://www2.0zz0.com/2024/11/20/14/518536011.jpg" alt="التاريخ">
+                <div class="title">beIN 7</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">باقة ssc sports</div>
+        <div class="shapes">
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:SSC1';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/704098725.jpg" alt="البرمجة">
+                <div class="title">SSC1</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:SSC2';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/843193078.jpg" alt="الذكاء الاصطناعي">
+                <div class="title">SSC2</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:SSC3';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/114366583.jpg" alt="الأجهزة">
+                <div class="title">SSC3</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:SSC4';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/432125082.jpg" alt="الأجهزة">
+                <div class="title">SSC4</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:SSC5';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/969516665.jpg" alt="الأجهزة">
+                <div class="title">SSC5</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:SSCE1';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/391275488.jpg" alt="الأجهزة">
+                <div class="title">SSC EXTRA 1</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:SSCE2';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/310032342.jpg" alt="الأجهزة">
+                <div class="title">SSC EXTRA 2</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:SSCE3';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/632921972.jpg" alt="الأجهزة">
+                <div class="title">SSC EXTRA 3</div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">باقة mytv ايرثلنك</div>
+        <div class="shapes">
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:my1';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/715887588.jpg" alt="beIN 1">
+                <div class="title">mytv beIN 1</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:my2';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/506675361.jpg" alt="الفنون">
+                <div class="title">mytv beIN 2</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:my3';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/296203586.jpg" alt="الفنون">
+                <div class="title">mytv beIN 3</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:my4';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/762952306.jpg" alt="الفنون">
+                <div class="title">mytv beIN 4</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:my5';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/198181919.jpg" alt="الفنون">
+                <div class="title">mytv beIN 5</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:my6';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/420597929.jpg" alt="الفنون">
+                <div class="title">mytv beIN 6</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:my7';">
+                <img src="https://www2.0zz0.com/2024/11/20/15/262585593.jpg" alt="التاريخ">
+                <div class="title">mytv beIN 7</div>
+            </div>
+        </div>
+    </div>
+  <div class="section">
+        <div class="section-title">باقة  رياضية متنوعة</div>
+        <div class="shapes">
+           <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:AFC';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/481935258.jpg" alt="beIN 1">
+                <div class="title">beIN AFC</div>
+            </div>
+          <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:solh';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/687708943.jpg" alt="beIN 1">
+                <div class="title">solh Sports</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:re';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/407140032.jpg" alt="beIN 1">
+                <div class="title">ريال مدريد</div>
+            </div>
+        
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:A';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/226144202.jpg" alt="beIN 1">
+                <div class="title">A SPORTS</div>
+            </div>
+<div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:cr';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/528815972.jpg" alt="beIN 1">
+                <div class="title">CRICBUZZ</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:TV';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/175469760.jpg" alt="beIN 1">
+                <div class="title">SPORTS TV</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:TNT';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/637609755.jpg" alt="beIN 1">
+                <div class="title">باقة TNT SPORTS</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:AD';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/245284266.jpg" alt="الفنون">
+                <div class="title">باقة ابو ضبي الرياضية</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:ra';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/825994182.jpg" alt="الفنون">
+                <div class="title">باقة الرابعة الرياضية</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:iq';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/195784014.jpg" alt="الفنون">
+                <div class="title">العراقية الرياضية</div>
+            </div>
+            <div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:am';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/688349795.jpg" alt="الفنون">
+                <div class="title">عمان الرياضية</div>
+            </div>
+<div class="shape" style="width: 240px; height: 150px;" onclick="location.href='go:sk';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/286551390.jpg" alt="الفنون">
+                <div class="title">Sky Sport </div>
+            </div>
+        </div>
+    </div>
+<div class="section">
+        <div class="section-title">باقة قنوات دينية</div>
+        <div class="shapes">
+            <div class="shape" onclick="location.href='go:krb';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/730457770.jpg" alt="كرة القدم">
+                <div class="title">KARBALA</div>
+            </div>
+            <div class="shape" onclick="location.href='go:ayat';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/435827343.jpg" alt="كرة القدم">
+                <div class="title">ايات</div>
+            </div>
+            <div class="shape" onclick="location.href='go:marf';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/302720699.jpg" alt="كرة السلة">
+                <div class="title">المعارف</div>
+            </div>
+            <div class="shape" onclick="location.href='go:jau';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/921181047.jpg" alt="التنس">
+                <div class="title">الجوادين</div>
+            </div>
+            <div class="shape" onclick="location.href='go:ch14';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/227521347.jpg" alt="كرة الطائرة">
+                <div class="title">الامام الحسين</div>
+            </div>
+<div class="shape" onclick="location.href='go:krq';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/552339409.jpg" alt="كرة الطائرة">
+                <div class="title">كربلاء القران</div>
+            </div>
+            <div class="shape" onclick="location.href='go:kroth';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/561656525.jpg" alt="رفع الأثقال">
+                <div class="title">كربلاء الوثائقية</div>
+            </div>
+          </div>
+         </div>
+<div class="section">
+        <div class="section-title">باقة ترفيهية</div>
+        <div class="shapes">
+            <div class="shape" onclick="location.href='go:WEA';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/130481292.png" alt="كرة القدم">
+                <div class="title">باقة وياك</div>
+            </div>
+<div class="shape" onclick="location.href='go:cen';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/516068208.jpg" alt="كرة السلة">
+                <div class="title">سينمانا</div>
+            </div>
+             <div class="shape" onclick="location.href='go:blx';">
+                <img src="https://www2.0zz0.com/2024/11/29/19/571021586.png" alt="كرة السلة">
+                <div class="title">PLX</div>
+            </div>
+<div class="shape" onclick="location.href='go:fg';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/175621994.jpg" alt="كرة السلة">
+                <div class="title">باقة الفجر</div>
+            </div>
+
+            <div class="shape" onclick="location.href='go:SH';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/836594806.png" alt="كرة السلة">
+                <div class="title">باقة شاهد</div>
+            </div>
+            <div class="shape" onclick="location.href='go:NOV';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/237906440.jpg" alt="التنس">
+                <div class="title">باقة نوفا</div>
+            </div>
+             <div class="shape" onclick="location.href='go:SHMAX';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/432087801.jpg" alt="كرة الطائرة">
+                <div class="title">شوف max</div>
+            </div>
+            <div class="shape" onclick="location.href='go:NET';">
+                <img src="https://www2.0zz0.com/2024/11/29/10/218775863.png" alt="كرة الطائرة">
+                <div class="title">باقة Netflix</div>
+            </div>
+    </div>
+</div>
+
+<!-- أيقونات تيليجرام والإيميل بشكل عائم -->
+<div class="contact-icons">
+<a href="https://t.me/yahyatvpro" target="_blank" class="contact-icon">
+        <i class="fab fa-telegram-plane"></i>
+    </a>
+    <a href="mailto:yahyatviq1@gmail.com" class="contact-icon">
+        <i class="fas fa-envelope"></i>
+    </a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
